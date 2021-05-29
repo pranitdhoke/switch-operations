@@ -13,14 +13,45 @@ import org.junit.jupiter.api.Test;
  */
 public class SwitchTest {
 	
+	private Switch systemUnderTest;
+
 	@Test
 	@DisplayName("Test case to create a switch")
 	public void createSwitchTest() {
-		Switch systemUnderTest = Switch.createSwitch();
-		assertThat(systemUnderTest != null);
-		assertThat(! systemUnderTest.getSwitchMode().isBlank());
-		assertThat(systemUnderTest.getSwitchMode()).isEqualTo("TV");
 		
+		systemUnderTest = Switch.createSwitch();
+		assertThat(systemUnderTest != null);
+		assertThat(! systemUnderTest.getSwitchMode().isBlank());		
+	}
+	
+	@Test
+	@DisplayName("Test to check the default mode of switch")
+	public void defaultModeStateOfSwitchTest() {
+		//Given
+		String defaultMode = "TV";
+		
+		//When
+		systemUnderTest = Switch.createSwitch();
+		
+		//Then
+		assertThat(systemUnderTest.getSwitchMode()).isEqualTo(defaultMode);
+	
+	}
+	
+	@Test
+	@DisplayName("Test to check the default mode of switch")
+	public void changeModeOfSwitchTest() {
+		//Given
+		String changedMode = "Refrigerator";
+		
+		//When
+		systemUnderTest = Switch.createSwitch();
+		systemUnderTest.changeMode();
+		
+		
+		//Then
+		assertThat(systemUnderTest.getSwitchMode()).isEqualTo(changedMode);
+	
 	}
 
 }
